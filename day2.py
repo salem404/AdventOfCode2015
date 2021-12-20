@@ -996,28 +996,30 @@ calculos='''29x13x26
 20x21x16
 23x3x6
 27x26x11
-3x2x22
-14x3x5
-10x9x8'''
+3x2x22'''
 
 
+def calcular_papel(calculos):
+    coleccion=calculos.splitlines()
 
-coleccion=calculos.splitlines()
+    total=0
 
-total=0
-lazo=0
+    for n in coleccion:
+        contador=0
+        for i in n.split('x'):
+            contador+=1
+            i=int(i)
+            if contador==1:
+                l=i
+            if contador==2:
+                w=i
+            if contador==3:
+                h=i
+        total+= 2*l*w + 2*w*h + 2*h*l + l*w
 
-for n in coleccion:
-    contador=0
-    for i in n.split('x'):
-        contador+=1
-        i=int(i)
-        if contador==1:
-            l=i
-        elif contador==2:
-            w=i
-        elif contador==3:
-            h=i
-            total+= 2*l*w + 2*w*h + 2*h*l + l*w
 
-print(total) #no sale 
+    return total #no sale ç
+    
+
+if __name__=='__main__':
+    print(calcular_papel(calculos))
