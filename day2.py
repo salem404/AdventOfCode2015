@@ -996,9 +996,11 @@ calculos='''29x13x26
 20x21x16
 23x3x6
 27x26x11
-3x2x22'''
+3x2x22
+14x3x5
+10x9x8'''
 
-def menor(a,b,c):
+def menor1d3(a,b,c):
     if a <= b:
         if a <= c: return a
         else: return c
@@ -1007,31 +1009,34 @@ def menor(a,b,c):
         else: return c
 
 
-def calcular_papel(calculos):
-    coleccion=calculos.splitlines()
 
-    total=0
+coleccion=calculos.splitlines()
 
-    for n in coleccion:
-        contador=0
-        for i in n.split('x'):
-            contador+=1
-            i=int(i)
-            if contador==1:
-                l=i
-            if contador==2:
-                w=i
-            if contador==3:
-                h=i
-        lado1=2*l*w
-        lado2=2*w*h
-        lado3=2*h*l
-        extra=menor(lado1,lado2,lado3)
-        total+= lado1 +lado2 +lado3 + extra
+total=0
+lazo=0
 
+for n in coleccion:
+    contador=0
+    for i in n.split('x'):
+        contador+=1
+        i=int(i)
+        if contador==1:
+            l=i
+        if contador==2:
+            w=i
+        if contador==3:
+            h=i
+    lado1=l*w
+    lado2=w*h
+    lado3=h*l
+    extra=menor1d3(lado1,lado2,lado3)
+    total+= 2*lado1 +2*lado2 +2*lado3 + extra
 
-    return total #no sale ç
-    
+    laDos=l*2+w*2
+    laDos2=w*2+h*2
+    laDos3=h*2+l*2
+    extra2=menor1d3(laDos,laDos2,laDos3)
+    lazo+= l*h*w + extra2
 
-if __name__=='__main__':
-    print(calcular_papel(calculos))
+print(total)
+print (lazo) #3690492 too low 3835856 too high
