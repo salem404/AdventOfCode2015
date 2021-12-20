@@ -998,6 +998,14 @@ calculos='''29x13x26
 27x26x11
 3x2x22'''
 
+def menor(a,b,c):
+    if a <= b:
+        if a <= c: return a
+        else: return c
+    else:
+        if b <= c: return b
+        else: return c
+
 
 def calcular_papel(calculos):
     coleccion=calculos.splitlines()
@@ -1015,7 +1023,11 @@ def calcular_papel(calculos):
                 w=i
             if contador==3:
                 h=i
-        total+= 2*l*w + 2*w*h + 2*h*l + l*w
+        lado1=2*l*w
+        lado2=2*w*h
+        lado3=2*h*l
+        extra=menor(lado1,lado2,lado3)
+        total+= lado1 +lado2 +lado3 + extra
 
 
     return total #no sale ç
